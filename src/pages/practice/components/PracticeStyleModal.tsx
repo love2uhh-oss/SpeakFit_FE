@@ -32,6 +32,8 @@ type PracticeStyleModalProps = {
   onPreviewTts?: (styleId: SpeechStyleId) => void;
   playingStyleId?: SpeechStyleId | null;
   onRetry: () => void;
+  onBack: () => void;
+  onGoHome: () => void;
   onConfirm: (styleId: SpeechStyleId) => void;
 };
 
@@ -42,6 +44,8 @@ export default function PracticeStyleModal({
   onPreviewTts,
   playingStyleId,
   onRetry,
+  onBack,
+  onGoHome,
   onConfirm,
 }: PracticeStyleModalProps) {
   const speechStyleOptions: SpeechStyleOption[] = useMemo(
@@ -187,7 +191,23 @@ export default function PracticeStyleModal({
           )}
         </div>
 
-        <div className="practice-style-modal__footer">
+        <div className="practice-style-modal__footer practice-modal__footer--split">
+          <div className="practice-modal__footer-left">
+            <button
+              type="button"
+              className="practice-modal__secondary"
+              onClick={onGoHome}
+            >
+              홈으로 가기
+            </button>
+            <button
+              type="button"
+              className="practice-modal__secondary"
+              onClick={onBack}
+            >
+              이전 단계
+            </button>
+          </div>
           <button
             type="button"
             className={`practice-modal__confirm ${

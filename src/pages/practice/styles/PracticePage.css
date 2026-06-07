@@ -1814,3 +1814,54 @@
 .practice-skeleton__tip-card {
   pointer-events: none;
 }
+
+.practice-modal__footer--split,
+.practice-style-modal__footer.practice-modal__footer--split {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.practice-modal__footer-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.practice-modal__secondary {
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid rgba(17, 24, 39, 0.12);
+  border-radius: 999px;
+  background: #ffffff;
+  color: #4b5563;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.practice-modal__secondary:hover {
+  background: #f3f4f6;
+  color: #111827;
+  border-color: rgba(17, 24, 39, 0.22);
+}
+
+@media (max-width: 640px) {
+  .practice-modal__footer--split,
+  .practice-style-modal__footer.practice-modal__footer--split {
+    align-items: stretch;
+    flex-direction: column-reverse;
+  }
+
+  .practice-modal__footer-left {
+    width: 100%;
+  }
+
+  .practice-modal__secondary,
+  .practice-modal__footer-left .practice-modal__secondary {
+    width: 100%;
+  }
+}

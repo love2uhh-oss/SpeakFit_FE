@@ -121,6 +121,14 @@ export function clearAuthSession() {
   clearStoredAuthSession();
 }
 
+export async function deleteAccount() {
+  const withdrawalPath =
+    import.meta.env.VITE_ACCOUNT_WITHDRAWAL_PATH || "/users/me";
+
+  await api.delete(withdrawalPath);
+  clearAuthSession();
+}
+
 function getVoiceOnboardingSeenKey(userId: number) {
   return `${VOICE_ONBOARDING_SEEN_KEY_PREFIX}_${userId}`;
 }

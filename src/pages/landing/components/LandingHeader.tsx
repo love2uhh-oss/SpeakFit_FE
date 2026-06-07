@@ -33,7 +33,9 @@ export default function LandingHeader() {
         <div className="landing-header__actions">
           {user ? (
             <>
-              <span className="landing-header__user">{displayName}님</span>
+              <Link className="landing-header__user" to={ROUTES.ACCOUNT}>
+                {displayName}님
+              </Link>
               <button
                 type="button"
                 className="btn btn-ghost"

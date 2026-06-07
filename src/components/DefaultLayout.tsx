@@ -7,11 +7,13 @@ import "../styles/layout.css";
 
 const Layout = () => {
   const location = useLocation();
-  const isScriptPage = location.pathname === ROUTES.SCRIPT;
+  const usesPracticeHeader = [ROUTES.SCRIPT, ROUTES.ACCOUNT].includes(
+    location.pathname as typeof ROUTES.SCRIPT | typeof ROUTES.ACCOUNT,
+  );
 
   return (
     <div className="layout">
-      {isScriptPage ? <PracticeHeader /> : <Header />}
+      {usesPracticeHeader ? <PracticeHeader /> : <Header />}
       <main className="layout__main">
         <Outlet />
       </main>

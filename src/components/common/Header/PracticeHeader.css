@@ -13,12 +13,21 @@
   width: 100%;
   padding: 24px 32px 24px 34px;
   box-sizing: border-box;
+  gap: 20px;
+}
+
+.practice-header__left-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
 }
 
 .practice-header__left {
   display: flex;
   align-items: center;
   gap: 8px;
+  color: #111827;
 }
 
 .practice-header__logo {
@@ -34,25 +43,70 @@
 .practice-header__right {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
-.practice-header__user {
+.practice-header__user,
+.practice-header__account {
   display: flex;
   align-items: center;
   gap: 6px;
   font-size: 14px;
+  color: #111827;
+  text-decoration: none;
 }
 
-.practice-header__user img {
+.practice-header__user img,
+.practice-header__account img {
   width: 20px;
   height: 20px;
 }
 
+.practice-header__nav-button,
 .practice-header__logout {
-  background: none;
-  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 7px 12px;
+  border: 1px solid rgba(17, 24, 39, 0.1);
+  border-radius: 999px;
+  background: #ffffff;
   font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
-  color: #555;
+  color: #4b5563;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.practice-header__nav-button:hover,
+.practice-header__logout:hover {
+  background: #eefdfa;
+  border-color: rgba(51, 203, 189, 0.35);
+  color: #0f766e;
+}
+
+@media (max-width: 720px) {
+  .practice-header__inner {
+    align-items: flex-start;
+    padding: 18px 18px;
+  }
+
+  .practice-header__brand {
+    display: none;
+  }
+
+  .practice-header__right {
+    gap: 8px;
+  }
+
+  .practice-header__nav-button,
+  .practice-header__logout {
+    min-height: 32px;
+    padding: 6px 10px;
+    font-size: 13px;
+  }
 }

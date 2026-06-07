@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./styles/PracticePage.css";
 import PracticeTabs from "./components/PracticeTabs";
 import ScriptPanel from "./components/ScriptPanel";
@@ -26,6 +26,7 @@ import {
   type SpeechStyle,
 } from "../../api/practice";
 import { getScript, uploadPpt, getPptStatus, type PptSlideResponse } from "../../api/scripts";
+import { ROUTES } from "../../app/routes.const";
 
 import type {
   FeedbackIssue,
@@ -488,6 +489,7 @@ function mapPracticeReport(
 
 export default function PracticePage() {
   const location = useLocation();
+  const navigate = useNavigate();
   const routeState =
     (location.state as PracticeRouteState | null) ?? getStoredPracticeRouteState();
   const scriptId = routeState?.scriptId ?? null;
@@ -746,6 +748,20 @@ export default function PracticePage() {
     } finally {
       setIsSubmittingPractice(false);
     }
+  };
+
+  const handleGoHomeFromSetup = () => {
+    previewAudioRef.current?.pause();
+    previewAudioRef.current = null;
+    setPlayingStyleId(null);
+    navigate(ROUTES.LANDING);
+  };
+
+  const handleBackToIntro = () => {
+    previewAudioRef.current?.pause();
+    previewAudioRef.current = null;
+    setPlayingStyleId(null);
+    setStage("intro-modal");
   };
 
   const handlePreviewStyleTts = (styleId: SpeechStyleId) => {
@@ -1302,6 +1318,7 @@ export default function PracticePage() {
             form={introForm}
             onChange={setIntroForm}
             onConfirm={handleConfirmIntro}
+            onGoHome={handleGoHomeFromSetup}
             isConfirmEnabled={isIntroComplete && !isSubmittingPractice}
           />
         )}
@@ -1314,6 +1331,8 @@ export default function PracticePage() {
             onPreviewTts={handlePreviewStyleTts}
             playingStyleId={playingStyleId}
             onRetry={handleConfirmIntro}
+            onBack={handleBackToIntro}
+            onGoHome={handleGoHomeFromSetup}
             onConfirm={handleConfirmStyle}
           />
         )}

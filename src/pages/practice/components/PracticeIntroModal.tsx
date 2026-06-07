@@ -4,6 +4,7 @@ type PracticeIntroModalProps = {
   form: IntroFormState;
   onChange: (next: IntroFormState) => void;
   onConfirm: () => void;
+  onGoHome: () => void;
   isConfirmEnabled: boolean;
 };
 
@@ -15,6 +16,7 @@ export default function PracticeIntroModal({
   form,
   onChange,
   onConfirm,
+  onGoHome,
   isConfirmEnabled,
 }: PracticeIntroModalProps) {
   const updateField = <K extends keyof IntroFormState>(
@@ -143,7 +145,14 @@ export default function PracticeIntroModal({
           </section>
         </div>
 
-        <div className="practice-modal__footer">
+        <div className="practice-modal__footer practice-modal__footer--split">
+          <button
+            type="button"
+            className="practice-modal__secondary"
+            onClick={onGoHome}
+          >
+            홈으로 가기
+          </button>
           <button
             type="button"
             className={`practice-modal__confirm ${
